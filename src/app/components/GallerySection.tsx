@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { Dialog, DialogContent, DialogTrigger } from "@/app/components/ui/dialog"
 import { Button } from "@/app/components/ui/button"
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -27,7 +27,7 @@ export default function GallerySection() {
   }
 
   return (
-    <section id="gallery" className="w-full py-24 bg-gray-400 relative overflow-hidden">
+    <section id="gallery" className="w-full py-24 bg-gradient-to-b from-blue-500/90 to-blue-500 relative overflow-hidden">
       <div className="absolute left-1/4 top-1/4 w-64 h-64 bg-blue-300 rounded-full opacity-20 filter blur-3xl"></div>
       <div className="absolute right-1/4 bottom-1/4 w-64 h-64 bg-purple-300 rounded-full opacity-20 filter blur-3xl"></div>
       <div className="container mx-auto px-4 relative z-10">

@@ -7,7 +7,7 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 
 export default function BookingForm() {
   return (
-    <section id="book" className="w-full py-24 bg-gradient-to-br from-blue-900 to-blue-500 relative overflow-hidden">
+    <section id="book" className="w-full py-24 bg-gradient-to-b from-blue-500 to-blue-500/90 relative overflow-hidden">
       <div className="absolute right-1/4 top-1/4 w-64 h-64 bg-blue-300 rounded-full opacity-20 filter blur-3xl"></div>
       <div className="absolute left-1/4 bottom-1/4 w-64 h-64 bg-purple-300 rounded-full opacity-20 filter blur-3xl"></div>
       <div className="container mx-auto px-4 relative z-10">

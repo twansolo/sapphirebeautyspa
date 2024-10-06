@@ -33,7 +33,7 @@ export default function ContactSection() {
       ></div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-blue-600/80 to-blue-900/80"></div>
+      <div className="absolute inset-0 z-10 bg-blue-900"></div>
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-lg shadow-xl overflow-hidden">
@@ -79,7 +79,7 @@ export default function ContactSection() {
                 <div className="space-y-4">
                   <p className="flex items-center text-white">
                     <MapPin className="w-5 h-5 mr-2" />
-                    123 Serenity Lane, Blissful City, BC 12345
+                    1855 1st Ave SE <br />Lower Level<br />Cedar Rapids, IA 52402
                   </p>
                   <p className="flex items-center text-white">
                     <Phone className="w-5 h-5 mr-2" />
@@ -93,8 +93,11 @@ export default function ContactSection() {
               </div>
               <div className="mt-8">
                 <h4 className="text-xl font-semibold text-white mb-4">Opening Hours</h4>
-                <p className="text-white">Monday - Saturday: 9:00 AM - 8:00 PM</p>
-                <p className="text-white">Sunday: 10:00 AM - 6:00 PM</p>
+                <p className="text-white">Monday: <span className='uppercase'>Closed</span></p>
+                <p className="text-white">Thursday: 9:00 AM - 5:00 PM</p>
+                <p className="text-white">Friday: 7:30 AM - 4:30 PM</p>
+                <p className="text-white">Saturday: 9:00 AM - 2:00 PM</p>
+                <p className="text-white">Sunday: <span className='uppercase'>Closed</span></p>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import { Button } from "@/app/components/ui/button"
 import { employees } from '@/app/components/AboutSection'
