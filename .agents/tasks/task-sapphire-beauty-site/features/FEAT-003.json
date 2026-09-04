@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Build the remaining sections and finalize the site: filterable Gallery, Testimonials, accessible FAQ accordion, Visit/Contact section with final booking CTA, and Footer (dark sapphire navy). Then final responsiveness/accessibility polish and a rewritten README with local setup instructions and clear image/content-swap guidance. Depends on FEAT-001 and FEAT-002.",
+  "status": "pending",
+  "steps": [
+    "Gallery (src/components/Gallery.tsx): id='gallery'. Eyebrow 'REAL RESULTS'; serif headline 'See the artistry.'. Filter controls: All, Lashes, Brows, Skin, PMU (buttons with aria-pressed reflecting active filter, keyboard accessible). Responsive image grid rendered from src/data/gallery.ts, filtered by active category ('All' shows everything). Subtle filtering transition (fade/opacity) that respects prefers-reduced-motion. Each image has descriptive alt and lazy loading (loading='lazy'). TODO comment for swapping in client images.",
+    "Testimonials (src/components/Testimonials.tsx): eyebrow 'KIND WORDS'; serif headline 'Trusted by our clients.'. Render 3 testimonial cards from src/data/testimonials.ts, each with an accessible star rating (e.g. aria-label 'Rated 5 out of 5 stars'), the quote, and a generic placeholder attribution (no fabricated named identities). Subtle card styling with thin borders.",
+    "FAQ (src/components/FAQ.tsx): id='faq'. Heading 'FAQ'; headline 'Before your appointment.'. Accessible accordion built from src/data/faq.ts: each item is a <button> with aria-expanded and aria-controls targeting a region with a matching id; only the triggered panel toggles; keyboard operable (Enter/Space) and focus-visible states; use semantic markup (e.g. dl or headings + button). Answers direct users to GlossGenius for current pricing, availability, and policy details. Respect prefers-reduced-motion for the expand animation.",
+    "ContactSection (src/components/ContactSection.tsx): id='contact' (also serve as the 'about'/visit anchor target; ensure an id='about' anchor exists somewhere sensible so the About nav link resolves - can be on ArtistsSection/About area or this section; make sure #about scrolls to meaningful content). Heading 'VISIT SAPPHIRE'; headline 'A beauty experience designed for you.'. Include a studio image (Unsplash, alt + TODO), location details '346 2nd Ave SW' / 'Cedar Rapids, Iowa', a booking availability link to BOOKING_URL, and a final CTA block: headline 'Your next appointment starts here.' with a 'BOOK AT SAPPHIRE' button opening BOOKING_URL in a new tab.",
+    "Footer (src/components/Footer.tsx): dark sapphire navy background (var(--navy)) with cream/white text and accessible contrast. Include 'Sapphire Beauty Studio', social placeholders (Instagram, Facebook, TikTok as links with href='#' or placeholder + TODO + aria-labels), grouped links (Booking -> BOOKING_URL, Policies -> BOOKING_URL, Contact -> #contact), and a dynamic current-year copyright using new Date().getFullYear().",
+    "Ensure the About nav link (#about) resolves to real content. If there is no dedicated About section, add a concise About band (studio story positioning Sapphire as one cohesive luxury destination with Colby as founder and Emi/Reegan as independent professionals) with id='about', or attach id='about' to the appropriate existing section - document the choice.",
+    "Final polish pass: verify full responsiveness at mobile/tablet/desktop breakpoints (grids collapse, hero stacks, nav switches to hamburger), consistent spacing/whitespace, thin borders, subtle hover/transition only (no autoplay video, no popups, no cookie banner), keyboard navigation and visible focus states across all interactive elements, and image loading='lazy' where appropriate.",
+    "Rewrite README.md: project overview (Vite + React + TS marketing site for Sapphire Beauty Studio), prerequisites (Node 18+), local setup ('npm install' then 'npm run dev', note Vite default http://localhost:5173, 'npm run build' -> dist, 'npm run preview'), a note that dependencies must be installed locally because the build sandbox had no npm registry access, project structure overview, and a clearly-labeled 'Updating content later' section explaining where to swap stock images, testimonials, social links, artist details, and individual booking links (point to src/data/* files and constants.ts).",
+    "Wire Gallery, Testimonials, FAQ, ContactSection, Footer into src/App.tsx replacing FEAT-001 placeholders; ensure final section order and all anchor ids (home, services, artists, about, gallery, faq, contact) resolve."
+  ],
+  "acceptance_criteria": [
+    "Gallery filters by All/Lashes/Brows/Skin/PMU, buttons expose active state (aria-pressed), grid updates correctly per filter with a subtle transition, and images lazy-load.",
+    "Testimonials shows 3 cards with accessible star ratings and generic (non-fabricated) attributions.",
+    "FAQ is a keyboard-accessible accordion using aria-expanded/aria-controls with the 5 specified questions; answers point users to GlossGenius for pricing/availability/policy.",
+    "ContactSection shows the exact heading, headline, address '346 2nd Ave SW / Cedar Rapids, Iowa', final CTA headline 'Your next appointment starts here.', and a 'BOOK AT SAPPHIRE' button to BOOKING_URL in a new tab.",
+    "Footer uses sapphire navy, includes brand name, Instagram/Facebook/TikTok placeholders, Booking/Policies/Contact links, and a dynamic current-year copyright.",
+    "Every nav anchor (home, services, artists, about, gallery, faq, contact) resolves to an existing section id; README documents local setup and content-swap locations."
+  ],
+  "verification": [
+    "Read each new component and confirm exact spec strings are present verbatim.",
+    "grep for anchor ids and confirm each nav target id exists exactly once in the rendered tree.",
+    "grep 'glossgenius' across final CTAs (contact final CTA, footer booking) and confirm target='_blank' rel='noopener noreferrer'.",
+    "Confirm FAQ buttons use aria-expanded + aria-controls and Testimonials ratings expose an accessible label; confirm Footer year uses new Date().getFullYear().",
+    "Read README and confirm it documents 'npm install && npm run dev', the local-install caveat, and where to swap images/testimonials/social/artist/booking data."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Build the top-of-page and trust-building sections: Header (sticky desktop nav + accessible mobile hamburger menu), split-screen Hero, Services grid (5 categories with minimal icons), ArtistCard + ArtistsSection (3 prominent artist cards, founder hierarchy preserved), and the K-Beauty feature section. All booking/service CTAs open GlossGenius in a new tab. Depends on FEAT-001 (data arrays, constants, BookButton, global CSS, App shell).",
+  "status": "pending",
+  "steps": [
+    "Header (src/components/Header.tsx): sticky nav on desktop (position sticky/fixed top, subtle thin bottom border, cream/white translucent background). Left: 'Sapphire Beauty Studio' wordmark in serif linking to #home. Nav links: Home(#home), Services(#services), Artists(#artists), About(#about), Gallery(#gallery), FAQ(#faq), Contact(#contact). Prominent 'BOOK NOW' button using BookButton -> BOOKING_URL. Mobile: hamburger button toggling an accessible menu (aria-expanded, aria-controls, aria-label, focus management, Escape to close, close on link click). Keyboard accessible; visible focus states. Anchor links use smooth scroll (rely on CSS scroll-behavior + scroll-padding-top for the sticky header).",
+    "Hero (src/components/Hero.tsx): split-screen layout, id='home'. Left column: eyebrow 'BEAUTY, REFINED.'; serif headline 'Elevated lash, brow, skin & permanent beauty services.'; subtext 'Cedar Rapids, Iowa'; two buttons: 'BOOK AN APPOINTMENT' (BookButton -> BOOKING_URL, primary) and 'EXPLORE SERVICES' (anchor to #services, outline style). Right column: large luxury beauty photo (eyelash application / close-up beauty service) from an Unsplash URL centralized in data or a hero constant, with descriptive alt and a TODO comment to swap for client photography. Stacks vertically and remains readable on mobile.",
+    "Services (src/components/Services.tsx): id='services'. Section eyebrow/heading. Render the 5 categories from src/data/services.ts in a responsive grid (or horizontal scroll on small screens). Each card: small minimal inline SVG icon (map by icon key; keep icons simple/stroke-based), service name (serif), short descriptor, and an 'Explore' link that opens exploreUrl (SERVICES_URL) in a new tab. Subtle hover transition (thin border/elevation). Do not list individual booking services.",
+    "ArtistCard (src/components/ArtistCard.tsx): reusable typed component taking an artist object. Renders portrait image (Unsplash URL from data, descriptive alt, TODO comment), name (serif), role, short bio, and a 'Book with {firstName}' CTA via BookButton -> artist.bookingUrl. Accept an optional isFounder/featured prop to allow subtle visual emphasis for the founder without diminishing the others.",
+    "ArtistsSection (src/components/ArtistsSection.tsx): id='artists'. Intro eyebrow 'THE ARTISTS'; serif headline rendered as two lines 'Different specialties.' / 'One beautiful space.'. Render 3 ArtistCards from src/data/artists.ts. Colby Jordan (founder) should be hierarchically recognizable (e.g. first position and a subtle 'Founder' emphasis) while Emi and Reegan are presented as equal, clearly-independent professionals (their independence reflected in role text). Responsive: 3-up on desktop, stacks on mobile.",
+    "KBeautySection (src/components/KBeautySection.tsx): distinct visual feature section (e.g. navy or beige background band, asymmetrical image). Eyebrow 'THE K-BEAUTY EDIT'; serif headline 'Advanced Korean-inspired facials for healthy, radiant skin.'; body 'From deep hydration to skin renewal, Sapphire treatments combine innovation with a calm, luxury experience.'; CTA 'EXPLORE SKIN SERVICES' opening SERVICES_URL in a new tab. Sophisticated skincare Unsplash photo with alt + TODO comment.",
+    "Add/adjust component CSS. Use either co-located CSS modules or clearly-scoped classes in global.css consistent with the approach chosen in FEAT-001. Ensure accessible color contrast (navy on cream, ink on white, cream/white on navy) and visible focus states throughout.",
+    "Wire these five components into src/App.tsx, replacing their FEAT-001 placeholders."
+  ],
+  "acceptance_criteria": [
+    "Header is sticky on desktop, exposes all 7 nav links plus a BOOK NOW button, and has a working, accessible mobile hamburger menu (aria-expanded toggles, closes on Escape and on link selection, keyboard operable).",
+    "Hero renders the exact eyebrow, headline, subtext, and two buttons; BOOK AN APPOINTMENT opens BOOKING_URL in a new tab and EXPLORE SERVICES scrolls to #services.",
+    "Services renders exactly the 5 specified categories with icon, name, descriptor, and an Explore link to SERVICES_URL opened in a new tab.",
+    "ArtistsSection renders the 3 artists with correct names, roles, and bios from data; every 'Book with' CTA opens a GlossGenius URL in a new tab; founder is visually distinguishable without demoting the independents.",
+    "KBeautySection renders the exact eyebrow, headline, body, and an EXPLORE SKIN SERVICES CTA to SERVICES_URL in a new tab.",
+    "All booking/service external links include target='_blank' and rel='noopener noreferrer'."
+  ],
+  "verification": [
+    "Read each component and confirm exact spec strings (eyebrows, headlines, subtext) are present verbatim.",
+    "grep for 'glossgenius' and confirm every occurrence is on an anchor with target='_blank' rel='noopener noreferrer'.",
+    "Confirm Header mobile menu uses aria-expanded/aria-controls and handles Escape + link-click close.",
+    "Confirm Services maps over the 5-item services data array and Artists over the 3-item artists array (no hardcoded duplication that diverges from data)."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

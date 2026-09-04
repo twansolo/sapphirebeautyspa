@@ -1,0 +1,7 @@
+{
+  "task_id": "task-sapphire-beauty-site",
+  "task_description": "Build a polished, production-ready responsive marketing website for Sapphire Beauty Studio (Cedar Rapids, IA) as a Vite + React + TypeScript single-page site. Rework the existing Next.js starter into Vite. Implement Header (sticky nav + mobile hamburger), split-screen Hero, Services grid, Artists section, K-Beauty feature, filterable Gallery, Testimonials, accessible FAQ accordion, Visit/Contact, and Footer. Data-driven via typed arrays; all booking CTAs open GlossGenius in a new tab. Editorial luxury aesthetic with the specified palette and serif+sans typography. Sandbox cannot install npm packages or build (registry blocked), so all files are hand-authored for a local 'npm install && npm run dev'.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}
