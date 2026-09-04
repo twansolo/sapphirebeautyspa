@@ -19,6 +19,8 @@ export interface BookButtonProps {
   className?: string;
   /** Optional accessible label override (useful for "Book with {Name}"). */
   ariaLabel?: string;
+  /** Optional click handler (e.g. to close the mobile menu). */
+  onClick?: () => void;
 }
 
 function BookButton({
@@ -27,6 +29,7 @@ function BookButton({
   variant = 'primary',
   className = '',
   ariaLabel,
+  onClick,
 }: BookButtonProps) {
   const variantClass = variant === 'outline' ? 'btn-outline' : 'btn-primary';
 
@@ -37,6 +40,7 @@ function BookButton({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel}
+      onClick={onClick}
     >
       {children}
     </a>
