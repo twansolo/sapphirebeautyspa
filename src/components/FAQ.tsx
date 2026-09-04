@@ -9,8 +9,9 @@ import { faq } from '../data/faq';
  *   - the panel region carries a matching id and aria-labelledby
  * Only the triggered panel toggles. Buttons are native <button> elements, so
  * they are operable with Enter/Space and show the global focus-visible ring.
- * The expand/collapse height animation is disabled under prefers-reduced-motion
- * (handled in global.css).
+ * Expanding a panel reveals it (the panel is `hidden` when collapsed) and runs
+ * a short opacity/translate fade-in; collapsing hides it instantly. That fade
+ * is disabled under prefers-reduced-motion (handled in global.css).
  *
  * Answers direct users to GlossGenius for live pricing, availability and
  * policy details (see src/data/faq.ts).

@@ -129,6 +129,13 @@ button {
   border-radius: 2px;
 }
 
+/* On navy-background regions the navy ring nearly disappears, so use a
+   light-colored outline there for a clearly visible keyboard focus state. */
+.section--navy :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--cream);
+}
+
 /* --------------------------------------------------------------------------
    Layout helpers
    -------------------------------------------------------------------------- */
