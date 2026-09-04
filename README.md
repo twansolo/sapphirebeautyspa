@@ -29,6 +29,29 @@ npm run preview  # preview the production build locally
 > there. Running `npm install && npm run dev` locally with network access will
 > just work.
 
+## Deploy to Vercel
+
+This repo ships a `vercel.json` so the deployment settings live in source and do
+not depend on the dashboard. If you configure the project manually in the Vercel
+dashboard, use the matching settings below:
+
+| Setting          | Value           |
+| ---------------- | --------------- |
+| Framework Preset | **Vite**        |
+| Build Command    | `npm run build` |
+| Output Directory | `dist`          |
+| Install Command  | `npm install`   |
+
+`vercel.json` also adds a single-page-app rewrite (`/(.*)` -> `/index.html`) so
+client-side deep links resolve correctly.
+
+> The packages needed by the `build` script (`tsc && vite build`) — `typescript`,
+> `vite`, `@vitejs/plugin-react`, and the React type packages — live under
+> `dependencies` (not `devDependencies`) so they are installed even when Vercel
+> runs a production install. This avoids `vite: command not found` at build time.
+> If you previously had this project set to the **Next.js** framework preset in
+> Vercel (a leftover from an earlier starter), switch it to **Vite**.
+
 ## Project structure
 
 ```
