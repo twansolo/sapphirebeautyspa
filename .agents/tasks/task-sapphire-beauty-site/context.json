@@ -1,0 +1,26 @@
+{
+  "project_type": "Marketing single-page website for a beauty studio (Sapphire Beauty Studio, Cedar Rapids, IA). Currently a clean Next.js 14.2.14 starter that must be reworked into a Vite + React + TypeScript SPA.",
+  "language": "TypeScript / React (TSX)",
+  "build_system": "Vite 5 (to be introduced). Node v22, npm 11 available. Shell has a stray NODE_OPTIONS pointing at a missing preload module; ALL node/npm invocations MUST be prefixed with 'unset NODE_OPTIONS;' or they crash.",
+  "build_command": "unset NODE_OPTIONS; npm run build  (CANNOT run in sandbox - npm registry is blocked, so node_modules cannot be installed)",
+  "test_command": "No automated test suite required by the spec. Verification is by careful hand-authoring, structural/import consistency, and TypeScript-level correctness by reading.",
+  "verification_instructions": "In-sandbox: verify file structure, that every component imported is exported and exists, every data array shape matches its consumer, all booking CTAs use the correct GlossGenius URLs with target=_blank rel=noopener noreferrer, and TS types are consistent. Local (developer with network): run 'npm install && npm run dev' then open the Vite dev URL (default http://localhost:5173). 'npm run build' should produce dist/.",
+  "snapshot_or_generated_files": "none",
+  "setup_instructions": "Rework repo from Next.js to Vite: delete next.config.mjs, src/app/, postcss.config.mjs (Next/Tailwind), tailwind.config.ts, .eslintrc.json (next), README (rewrite). Author package.json (react 18, react-dom 18, vite 5, @vitejs/plugin-react 4, typescript 5, @types/react 18, @types/react-dom 18), vite.config.ts, tsconfig.json, tsconfig.node.json, index.html, src/main.tsx, src/App.tsx, components, data, and CSS. Developer then runs 'unset NODE_OPTIONS' (only needed in THIS sandbox shell) then 'npm install && npm run dev'.",
+  "environment_constraints": "NETWORK MODE: INTEGRATIONS_ONLY. npm registry BLOCKED (403 on install/ci/ping). CANNOT install packages, CANNOT run 'npm create vite', CANNOT run vite dev/build. So build/dev verification is IMPOSSIBLE in-sandbox. Do NOT commit node_modules or a hand-faked lockfile. Files must be hand-authored correctly so local 'npm install && npm run dev' just works. Prefix node/npm with 'unset NODE_OPTIONS;'.",
+  "contribution_requirements": "Work only on branch 'fresh-nextjs-app'. Do NOT create or switch branches. Do NOT push or open PRs (orchestrator handles that). Keep git/remote intact.",
+  "key_patterns": "Global CSS with CSS custom properties for the palette (Sapphire navy #0B2348, Cream #F7F2EB, Warm beige #E9DDD0, Soft taupe #D7C2AD, Dark text #242321, White #FFFDF9). Serif headings (Playfair Display) + sans body (DM Sans) via Google Fonts <link> in index.html. Reusable functional components with typed props. Data-driven sections fed by typed data arrays in src/data/. All booking CTAs open GlossGenius in new tab. Centralize image URLs (Unsplash) in data arrays with clear TODO comments for swapping to real photography.",
+  "relevant_files": [
+    "package.json (rewrite for Vite/React/TS)",
+    "tsconfig.json (rewrite for Vite)",
+    "index.html (new, Vite entry + Google Fonts links)",
+    "vite.config.ts (new)",
+    "src/main.tsx (new entry)",
+    "src/App.tsx (new, composes all sections)",
+    "src/styles/global.css (new, palette + base styles)",
+    "src/components/* (Header, Hero, Services, ArtistCard, ArtistsSection, KBeautySection, Gallery, Testimonials, FAQ, ContactSection, Footer)",
+    "src/data/* (artists, services, gallery, testimonials, faq)",
+    "README.md (rewrite with local setup)"
+  ],
+  "directory_structure": "Target: index.html + vite.config.ts + tsconfig.json + tsconfig.node.json at root; src/main.tsx, src/App.tsx; src/components/ (one file per component, optional co-located CSS module or shared global css); src/data/ (typed arrays); src/styles/global.css; public/ (keep or clean svgs). Remove Next.js artifacts."
+}

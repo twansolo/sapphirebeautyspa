@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sapphire Beauty Studio
 
-## Getting Started
+A premium, responsive marketing website for **Sapphire Beauty Studio** in
+Cedar Rapids, Iowa. The site markets the studio, its services, artists and
+results, then sends visitors to the existing
+[GlossGenius](https://sapphirebeautyia.glossgenius.com/) platform to book.
+It intentionally does **not** rebuild appointment scheduling.
 
-First, run the development server:
+## Tech stack
+
+- [Vite](https://vitejs.dev/) 5
+- [React](https://react.dev/) 18 + TypeScript 5
+- Plain global CSS with CSS custom properties (design tokens)
+- Google Fonts: Playfair Display (serif headings) + DM Sans (sans body/UI)
+
+## Local setup
+
+Requires Node.js 18+ and npm.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # start the Vite dev server (default http://localhost:5173)
+npm run build    # type-check (tsc) and build to dist/
+npm run preview  # preview the production build locally
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Note: this project was scaffolded in an offline sandbox where the npm
+> registry was blocked, so `npm install` and `npm run build` could not be run
+> there. Running `npm install && npm run dev` locally with network access will
+> just work.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This repo ships a `vercel.json` so the deployment settings live in source and do
+not depend on the dashboard. If you configure the project manually in the Vercel
+dashboard, use the matching settings below:
 
-## Learn More
+| Setting          | Value           |
+| ---------------- | --------------- |
+| Framework Preset | **Vite**        |
+| Build Command    | `npm run build` |
+| Output Directory | `dist`          |
+| Install Command  | `npm install`   |
 
-To learn more about Next.js, take a look at the following resources:
+`vercel.json` also adds a single-page-app rewrite (`/(.*)` -> `/index.html`) so
+client-side deep links resolve correctly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> The packages needed by the `build` script (`tsc && vite build`) — `typescript`,
+> `vite`, `@vitejs/plugin-react`, and the React type packages — live under
+> `dependencies` (not `devDependencies`) so they are installed even when Vercel
+> runs a production install. This avoids `vite: command not found` at build time.
+> If you previously had this project set to the **Next.js** framework preset in
+> Vercel (a leftover from an earlier starter), switch it to **Vite**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
+```
+index.html               # Vite entry + Google Fonts links
+vite.config.ts
+tsconfig.json / tsconfig.node.json
+src/
+  main.tsx               # React root
+  App.tsx                # Composes all sections in order
+  styles/global.css      # Palette, typography, base + utility classes
+  components/            # Header, Hero, Services, ArtistCard, ArtistsSection,
+                         # KBeautySection, Gallery, Testimonials, FAQ,
+                         # ContactSection, Footer, BookButton
+  data/                  # Typed content arrays (easy to edit)
+    constants.ts         # BOOKING_URL, SERVICES_URL, studio + social links
+    services.ts
+    artists.ts
+    gallery.ts
+    testimonials.ts
+    faq.ts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Editing content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All copy, links and imagery are data-driven and centralized in `src/data/`.
+Search for `TODO` comments to find every spot meant to be swapped with real
+client-provided content:
+
+- **Booking links** — `src/data/constants.ts` (`BOOKING_URL`, `SERVICES_URL`)
+  and per-artist `bookingUrl` in `src/data/artists.ts`.
+- **Social links** — `SOCIAL_LINKS` in `src/data/constants.ts` (replace the
+  `#` placeholders).
+- **Photography** — every `imageUrl` / `portrait` in the data files and the
+  section stubs currently points at tasteful Unsplash placeholders.
+- **Testimonials** — `src/data/testimonials.ts` (placeholder copy with generic
+  `Verified Client` attribution; do not fabricate named clients).
+- **Artist details** — `src/data/artists.ts`.
+
+## Design tokens
+
+Defined as CSS variables in `src/styles/global.css`:
+
+| Token      | Value     | Use                   |
+| ---------- | --------- | --------------------- |
+| `--navy`   | `#0B2348` | Sapphire navy accent  |
+| `--cream`  | `#F7F2EB` | Page background       |
+| `--beige`  | `#E9DDD0` | Alternating sections  |
+| `--taupe`  | `#D7C2AD` | Soft accents          |
+| `--ink`    | `#242321` | Body text             |
+| `--white`  | `#FFFDF9` | Surfaces              |
+
+## Booking
+
+Every booking CTA opens GlossGenius in a new tab via the reusable
+`BookButton` component. To change the destination, edit `src/data/constants.ts`.
