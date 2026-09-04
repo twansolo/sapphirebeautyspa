@@ -2,11 +2,10 @@ import BookButton from './BookButton';
 import { SERVICES_URL } from '../data/constants';
 
 /**
- * Korean skincare feature section. Also hosts the `about` anchor so the
- * "About" nav link has a destination in this foundation build.
+ * Korean skincare feature section.
  *
- * PLACEHOLDER STUB (FEAT-001): correct copy and CTA are in place; the feature
- * layout and imagery are polished in a later feature.
+ * The `#about` anchor now lives on the dedicated About band (see About.tsx),
+ * so this section is purely the K-Beauty feature.
  *
  * TODO: replace the image with sophisticated skincare photography.
  */
@@ -15,7 +14,7 @@ const KBEAUTY_IMAGE =
 
 function KBeautySection() {
   return (
-    <section id="about" className="section section--navy">
+    <section className="section section--navy">
       <div className="container kbeauty__inner">
         <div className="kbeauty__media">
           <img

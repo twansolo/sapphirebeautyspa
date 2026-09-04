@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import ArtistsSection from './components/ArtistsSection';
+import About from './components/About';
 import KBeautySection from './components/KBeautySection';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
@@ -14,7 +15,7 @@ import Footer from './components/Footer';
  *
  * Anchor ids live on the individual sections:
  *   home (Hero), services (Services), artists (ArtistsSection),
- *   about (KBeautySection), gallery (Gallery), faq (FAQ), contact (ContactSection).
+ *   about (About), gallery (Gallery), faq (FAQ), contact (ContactSection).
  */
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Hero />
         <Services />
         <ArtistsSection />
+        <About />
         <KBeautySection />
         <Gallery />
         <Testimonials />
